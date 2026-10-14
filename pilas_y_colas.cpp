@@ -2,21 +2,17 @@
 #include <cstdlib>
 using namespace std;
 
-// Capacidad maxima (igual para pila y cola, cambiala si quieres otro limite)
 const int MAX_ELEM = 5;
 
 
-/* ========================================================================
-                               PILAS
-  */
-
 struct nodoPila
+
 {
     int d;
     nodoPila *a;
 };
 
-nodoPila *cima = NULL;   // tope de la pila
+nodoPila *cima = NULL;
 
 
 int contarPila()
@@ -46,7 +42,7 @@ void ingresarPila()
     cima = nuevo;
 }
 
-void ultimoPila()   // muestra el primer dato que se ingreso (el del fondo)
+void ultimoPila()
 {
     if( !cima )
     {
@@ -121,10 +117,6 @@ void vaciarPila()
 }
 
 
-/* ========================================================================
-                               COLAS
-   ======================================================================== */
-
 struct nodoCola
 {
     int nro;
@@ -137,7 +129,7 @@ struct cola
     nodoCola *atras;
 };
 
-cola q = { NULL, NULL };   // la cola del programa
+cola q = { NULL, NULL };
 
 
 void encolar( cola &c, int valor )
@@ -148,11 +140,11 @@ void encolar( cola &c, int valor )
     aux->sgte = NULL;
 
     if( c.delante == NULL )
-        c.delante = aux;          // primer elemento
+        c.delante = aux;
     else
         (c.atras)->sgte = aux;
 
-    c.atras = aux;                // siempre apunta al ultimo
+    c.atras = aux;
 }
 
 int desencolar( cola &c )
@@ -161,7 +153,7 @@ int desencolar( cola &c )
     int num = aux->nro;
 
     c.delante = (c.delante)->sgte;
-    if( c.delante == NULL )       // si quedo vacia, atras tambien
+    if( c.delante == NULL )
         c.atras = NULL;
     delete aux;
 
@@ -225,7 +217,6 @@ void mostrarPrimero( cola c )
         cout<<"\n\n\tCola vacia...! No hay elemento para salir."<<endl;
 }
 
-// Extrae un elemento de cualquier posicion (la primera vez que aparece)
 bool extraerElemento( cola &c, int valor )
 {
     nodoCola *actual   = c.delante;
@@ -252,10 +243,6 @@ bool extraerElemento( cola &c, int valor )
     return true;
 }
 
-
-/* ========================================================================
-                          UTILIDADES Y VISTA UNIDA
-   ======================================================================== */
 
 void pausa()
 {
@@ -287,10 +274,6 @@ void mostrarTodo()
 }
 
 
-/* ========================================================================
-                               SUBMENUS
-   ======================================================================== */
-
 void menuPilas()
 {
     int op;
@@ -316,7 +299,7 @@ void menuPilas()
             case 4: primeroPila();   break;
             case 5: estadoPila();    break;
             case 6: vaciarPila();    break;
-            case 7: break;           // se muestra abajo
+            case 7: break;
             case 0: return;
             default: cout<<"\n Opcion no valida!!"; break;
         }
@@ -417,10 +400,6 @@ void menuColas()
     } while( op != 0 );
 }
 
-
-/* ========================================================================
-                           MENU PRINCIPAL
-   ======================================================================== */
 
 int main()
 {
